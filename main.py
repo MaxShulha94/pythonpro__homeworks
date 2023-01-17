@@ -28,9 +28,17 @@ class Order:
 
     def add_product(self, product):
         self.products.append(product)
+        self
+
+    def total_sum(self):
+        res = 0
+        for self.price, self.size in self.products:
+            res += self.price * self
+
+
 
     def __str__(self):
-        return f'{self.title} : {self.buyer}\n' + '\n'.join(map(str, self.products))
+        return f'{self.total_sum}{self.title} : {self.buyer}\n' + '\n'.join(map(str, self.products))
 
 
 buyer = Buyer('Gump', 'Forrest', '+38098888888')
