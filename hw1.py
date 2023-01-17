@@ -68,6 +68,6 @@ gr.add_st(st8)
 gr.add_st(st9)
 gr.add_st(st10)
 
-gr.plus_st()
+# gr.plus_st()
 #gr.del_st()
 print(gr)
