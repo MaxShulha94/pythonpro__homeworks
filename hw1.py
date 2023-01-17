@@ -28,11 +28,17 @@ class Group:
     def add_st(self, student):
         self.list_group.append(student)
 
-    def plus_st(self, st_surname, st_name, st_age):
-        self.list_group.append(self.plus_st)
+    def plus_st(self):
+        new_student = {'inform': input('Enter surname, name and age: ')}
+        self.list_group.append(new_student.get('inform'))
 
-    def del_st(self, st_surname, st_name, st):
-        self.list_group.remove(self.del_st)
+    def del_st(self):
+        del_student = input('Enter surname, name, age')
+        self.list_group = self.list_group.remove(del_student)
+
+    #def search_st(self):
+    #   s_student = input('Enter surname: ')
+    #    for s_student in self.list_group:
 
     def __str__(self):
         return f'{self.specialize}:\n' + '\n'.join(map(str, self.list_group))
@@ -61,9 +67,7 @@ gr.add_st(st7)
 gr.add_st(st8)
 gr.add_st(st9)
 gr.add_st(st10)
-st_surname = input('Enter the surname of student: ')
-st_name = input('Enter the name of student: ')
-st_age = input('Enter the age of student: ')
-gr.plus_st(st_surname, st_name, st_age)
 
+gr.plus_st()
+#gr.del_st()
 print(gr)
