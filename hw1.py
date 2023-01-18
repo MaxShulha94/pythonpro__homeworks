@@ -27,14 +27,18 @@ class Group:
 
     def add_st(self, student):
         self.list_group.append(student)
+        if len(self.list_group) > 10:
+            del_student = input('Enter surname, name, age')
+            self.list_group.remove(del_student)
 
     def plus_st(self):
         new_student = {'inform': input('Enter surname, name and age: ')}
         self.list_group.append(new_student.get('inform'))
 
     def del_st(self):
-        del_student = input('Enter surname, name, age')
-        self.list_group = self.list_group.remove(del_student)
+        if len(self.list_group) > 10:
+            del_student = input('Enter surname, name, age')
+            self.list_group = self.list_group.remove(del_student)
 
     #def search_st(self):
     #   s_student = input('Enter surname: ')
@@ -67,7 +71,8 @@ gr.add_st(st7)
 gr.add_st(st8)
 gr.add_st(st9)
 gr.add_st(st10)
+gr.add_st(st10)
 
-# gr.plus_st()
-#gr.del_st()
+#gr.plus_st()
+gr.del_st()
 print(gr)
