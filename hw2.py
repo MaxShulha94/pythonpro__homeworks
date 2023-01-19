@@ -65,12 +65,19 @@ class Cart:
         return result
 
 try:
-    x_1 = Product('banana', 0)
-    x_2 = Product('apple', 25)
-    x_3 = Product('orange', 35)
+    x_1 = Product('banana', 10)
 except NegativePriceError as error:
     print(error)
 
+try:
+    x_2 = Product('apple', 25)
+except NegativePriceError as error:
+    print(error)
+
+try:
+    x_3 = Product('orange', -35)
+except NegativePriceError as error:
+    print(error)
 customer_1 = Customer('Ivanov', 'Ivan', '123456789')
 customer_2 = Customer('Ivanov', 'Petro', '123456799')
 
