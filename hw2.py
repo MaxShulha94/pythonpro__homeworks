@@ -2,21 +2,16 @@ class NegativePriceError(Exception):
     def __int__(self, message):
         self.message = message
 
-    # def __str__(self):
-    #     return f'{self.message}'
-
-
 
 class Product:
 
     def __init__(self, title: str, price: int | float):
-
         self.title = title
         self.price = price
 
-    #def price_test(self):
+        # def price_test(self):
         if self.price <= 0:
-            raise NegativePriceError('Price can not be zero or less!')
+            raise NegativePriceError(f'Price for {self.title} can not be zero or less!')
 
     def __str__(self):
         return f'{self.title}: {self.price} UAH'
@@ -34,7 +29,6 @@ class Customer:
 
 
 class Cart:
-
     MAX_LIMIT = 40
 
     def __init__(self, customer: Customer):
@@ -60,12 +54,13 @@ class Cart:
     def __str__(self):
         result = f'{self.customer}\n'
         result += '\n'.join(map(lambda item: f'{item[0]} x {item[1]} = {item[0].price * item[1]} UAH',
-                      zip(self.__products, self.__quantities)))
+                                zip(self.__products, self.__quantities)))
         result += f'\nTotal: {self.total()} UAH'
         return result
 
+
 try:
-    x_1 = Product('banana', 10)
+    x_1 = Product('banana', -10)
 except NegativePriceError as error:
     print(error)
 
@@ -75,21 +70,32 @@ except NegativePriceError as error:
     print(error)
 
 try:
-    x_3 = Product('orange', -35)
+    x_3 = Product('orange', 35)
 except NegativePriceError as error:
     print(error)
+
 customer_1 = Customer('Ivanov', 'Ivan', '123456789')
 customer_2 = Customer('Ivanov', 'Petro', '123456799')
 
 order_1 = Cart(customer_1)
-order_1.add_product(x_1)
-order_1.add_product(x_2, 2)
-order_1.add_product(x_3, 35)
+
+try:
+    order_1.add_product(x_1)
+except NameError:
+    print(f'You can not add another products until you change the price for this product!')
+
+try:
+    order_1.add_product(x_2, 2)
+except NameError:
+    print(f'You can not add another products until you change the price for this product!')
+
+try:
+    order_1.add_product(x_3, 35)
+except NameError:
+    print(f'You can not add another products until you change the price for this product!')
 
 print(order_1)
-
 
 order_2 = Cart(customer_2)
 order_2.add_product(x_2, 10)
 print(order_2)
-
