@@ -1,3 +1,20 @@
+import logging
+
+logger = logging.getLogger('Add_student')
+logger.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
+
+class LimitError(Exception):
+    def __int__(self, message):
+        self.message = message
+
+
 class Human:
     def __init__(self, surname, name, age):
         self.surname = surname
@@ -26,9 +43,10 @@ class Group:
         self.list_group = []
 
     def add_st(self, student: Student):
-        if len(self.list_group) >= 10:
-            return None
+        if len(self.list_group) > 9:
+            raise LimitError('You can not add more than 10 students!')
         if student not in self.list_group:
+            logger.debug(f'Student {student} was added')
             self.list_group.append(student)
 
     def del_st(self, student: Student):
@@ -59,20 +77,25 @@ st8 = Student('Maksymenko', 'Ivan', '23')
 st9 = Student('Ivanenko', 'Ivan', '17')
 st10 = Student('Borysenko', 'Ivan', '35')
 st11 = Student('Brovko', 'Ivan', '35')
+st12 = Student('Rudnko', 'Ivan', '55')
 
-gr.add_st(st1)
-gr.add_st(st2)
-gr.add_st(st3)
-gr.add_st(st4)
-gr.add_st(st5)
-gr.add_st(st6)
-gr.add_st(st7)
-gr.add_st(st8)
-gr.add_st(st9)
-gr.add_st(st10)
-gr.add_st(st11)
+try:
+    gr.add_st(st1)
+    gr.add_st(st2)
+    gr.add_st(st3)
+    gr.add_st(st4)
+    gr.add_st(st5)
+    gr.add_st(st6)
+    gr.add_st(st7)
+    gr.add_st(st8)
+    gr.add_st(st9)
+    gr.add_st(st10)
+    gr.add_st(st11)
+    gr.add_st(st12)
+except LimitError as error:
+    print(error)
 
-#print(gr)
-surname = input()
-a = gr.search_st(surname)
-print('*'.join(map(str, a)))
+print(gr)
+# surname = input('Enter surname: ')
+# a = gr.search_st(surname)
+# print('*'.join(map(str, a)))
