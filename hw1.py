@@ -43,7 +43,7 @@ class Group:
         self.list_group = []
 
     def add_st(self, student: Student):
-        if len(self.list_group) > 9:
+        if len(self.list_group) > self.limit_st:
             raise LimitError('You can not add more than 10 students!')
         if student not in self.list_group:
             logger.debug(f'Student {student} was added')

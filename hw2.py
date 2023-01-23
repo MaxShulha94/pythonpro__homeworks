@@ -9,7 +9,7 @@ class Product:
         self.title = title
         self.price = price
 
-        # def price_test(self):
+    def price_test(self):
         if self.price <= 0:
             raise NegativePriceError(f'Price for {self.title} can not be zero or less!')
 
