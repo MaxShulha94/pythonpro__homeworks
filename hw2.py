@@ -8,8 +8,6 @@ class Product:
     def __init__(self, title: str, price: int | float):
         self.title = title
         self.price = price
-
-    def price_test(self):
         if self.price <= 0:
             raise NegativePriceError(f'Price for {self.title} can not be zero or less!')
 
