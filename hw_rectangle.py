@@ -35,4 +35,3 @@ class Rectangle:
 
 a = Rectangle(5, 5)
 b = Rectangle(4, 4)
-print(a)

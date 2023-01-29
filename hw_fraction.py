@@ -54,4 +54,4 @@ class Fraction:
 
 a = Fraction(1, 6)
 b = Fraction(9, 5)
-print(b.__sub__(a))
+
