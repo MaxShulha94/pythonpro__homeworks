@@ -5,26 +5,81 @@ from math import gcd
 class Fraction:
 
     def __init__(self, numerator: int, denumerator: int):
+        if not isinstance(numerator, int):
+            raise TypeError('Numerator must be int number.')
+        if not isinstance(denumerator, int):
+            raise TypeError('Denominator must be int number.')
+        if denumerator == 0:
+            raise ZeroDivisionError()
+
         self.numerator = numerator
         self.denumerator = denumerator
 
     def __gt__(self, other):
-        return Fraction(self.numerator > other.numerator, self.denumerator > other.denumerator)
+        tmp = math.gcd(self.numerator, self.denumerator)
+        self.numerator //= tmp
+        self.denumerator //= tmp
+
+        tmp = math.gcd(other.numerator, other.denumerator)
+        other.numerator //= tmp
+        other.denumerator //= tmp
+
+        return (self.numerator, self.denumerator) > (other.numerator, other.denumerator)
 
     def __ge__(self, other):
-        return Fraction(self.numerator >= other.numerator, self.denumerator >= other.denumerator)
+        tmp = math.gcd(self.numerator, self.denumerator)
+        self.numerator //= tmp
+        self.denumerator //= tmp
+
+        tmp = math.gcd(other.numerator, other.denumerator)
+        other.numerator //= tmp
+        other.denumerator //= tmp
+
+        return (self.numerator, self.denumerator) >= (other.numerator, other.denumerator)
 
     def __lt__(self, other):
-        return Fraction(self.numerator < other.numerator, self.denumerator < other.denumerator)
+        tmp = math.gcd(self.numerator, self.denumerator)
+        self.numerator //= tmp
+        self.denumerator //= tmp
+
+        tmp = math.gcd(other.numerator, other.denumerator)
+        other.numerator //= tmp
+        other.denumerator //= tmp
+
+        return (self.numerator, self.denumerator) < (other.numerator, other.denumerator)
 
     def __le__(self, other):
-        return Fraction(self.numerator <= other.numerator, self.denumerator <= other.denumerator)
+        tmp = math.gcd(self.numerator, self.denumerator)
+        self.numerator //= tmp
+        self.denumerator //= tmp
+
+        tmp = math.gcd(other.numerator, other.denumerator)
+        other.numerator //= tmp
+        other.denumerator //= tmp
+
+        return (self.numerator, self.denumerator) <= (other.numerator, other.denumerator)
 
     def __eq__(self, other):
-        return Fraction(self.numerator == other.numerator, self.denumerator == other.denumerator)
+        tmp = math.gcd(self.numerator, self.denumerator)
+        self.numerator //= tmp
+        self.denumerator //= tmp
+
+        tmp = math.gcd(other.numerator, other.denumerator)
+        other.numerator //= tmp
+        other.denumerator //= tmp
+
+        return (self.numerator, self.denumerator) == (other.numerator, other.denumerator)
 
     def __ne__(self, other):
-        return Fraction(self.numerator != other.numerator, self.denumerator != other.denumerator)
+        tmp = math.gcd(self.numerator, self.denumerator)
+        self.numerator //= tmp
+        self.denumerator //= tmp
+
+        tmp = math.gcd(other.numerator, other.denumerator)
+        other.numerator //= tmp
+        other.denumerator //= tmp
+
+        return (self.numerator, self.denumerator) != (other.numerator, other.denumerator)
 
     def __mul__(self, other):
         return Fraction(self.numerator * other.numerator, self.denumerator * other.denumerator)
@@ -52,6 +107,6 @@ class Fraction:
             new_numerator = self.numerator - (intgr * self.denumerator)
             return f'{intgr} {new_numerator}/{self.denumerator}'
 
-a = Fraction(1, 6)
-b = Fraction(9, 5)
+a = Fraction(1, 4)
+b = Fraction(2, 20)
 
