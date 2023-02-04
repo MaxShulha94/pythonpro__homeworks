@@ -29,7 +29,7 @@ for item in range_analog(0, 20, 2):
 
 
 def simple_num(stop, start=1):
-    while stop > start:
+    while start > stop:
         for i in range(100):
             if start % i != 0:
                 yield start
