@@ -27,8 +27,7 @@ class Pizza:
 
 class Order:
 
-    def __init__(self, customer: Customer, pizza_of_the_day):
-
+    def __init__(self, customer: Customer):
 
         self.customer = customer
         self.orders = []
@@ -41,19 +40,20 @@ class Order:
     def total(self):
         result = 0
         for pizza, quantity in zip(self.orders, self.__quantities):
-            result += pizza.price * quantity
+            result += self.price_of_pizza * quantity
 
         return result
 
     def __str__(self):
         result = f'{self.customer}\n'
-        result += '\n'.join(map(lambda item: f'{item[0]} x {item[1]} = {item[0].price * item[1]} UAH',
+        result += '\n'.join(map(lambda item: f'{item[0]} x {item[1]} = {item[0].price_of_pizza * item[1]} UAH',
                                 zip(self.orders, self.__quantities)))
         result += f'\nTotal: {self.total()} UAH'
         return result
 
 
-human = Customer('Ivan', 'Sirko', 1488)
+human = Customer('Ivan', 'Sirko', 18)
 p = Pizza()
-x = Order
+x = Order(human)
 x.add_product(p, 3)
+print(x)
