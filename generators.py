@@ -28,12 +28,13 @@ for item in range_analog(0, 20, 2):
       цієї функції."""
 
 
-def simple_num(stop, start=1):
-    while start > stop:
-        for i in range(100):
-            if start % i != 0:
-                yield start
-            start += 1
+def simple_num(n):
+    for numb in range(2, n + 1):
+        for i in range(2, numb):
+            if numb % i == 0:
+                break
+            else:
+                yield numb
 
 
 for item in simple_num(20):
@@ -43,13 +44,6 @@ for item in simple_num(20):
       вами величини."""
 
 
-def cube(stop, start=2):
-    res = []
-    while stop > start:
-        yield res
-        res.append(start ** 3)
-        start += 1
-
-
-for item in cube(20):
-    print(item)
+n = input('enter the number: ')
+x = (i ** 3 for i in range(2, n))
+print(list(x))
