@@ -1,5 +1,5 @@
 def fib():
-    buf = [0, 1]
+    buf = []
     prev, curr = 0, 1
 
     def get_next(n):
