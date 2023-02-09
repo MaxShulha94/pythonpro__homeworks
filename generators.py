@@ -46,4 +46,5 @@ for item in simple_num(20):
 
 n = input('enter the number: ')
 x = (i ** 3 for i in range(2, n))
+
 print(list(x))
